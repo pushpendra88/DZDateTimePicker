@@ -330,7 +330,7 @@ window.wait = window.wait || async function (milliseconds = 0) {
             window[fn](calendar)
         })
         .then(() => {
-          const date = (this.source.hasAttribute("value") ? new Date(this.source.value) : new Date()).getDate()
+          const date = (this.source.hasAttribute("value") && !!(this.source.value) && this.source.value.trim().length  ? new Date(this.source.value) : new Date()).getDate()
           return measure(() => calendar.querySelector(`button:nth-child(${date})`))
         })
         .then(result => {
@@ -493,7 +493,7 @@ window.wait = window.wait || async function (milliseconds = 0) {
 
     drawCalendar() {
 
-      let now = this.source.hasAttribute("value") ? new Date(this.source.value) : new Date()
+      let now = this.source.hasAttribute("value") && !!(this.source.value) && this.source.value.trim().length  ? new Date(this.source.value) : new Date()
 
       let year = now.getFullYear()
       let month = now.getMonth()
